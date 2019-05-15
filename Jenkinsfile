@@ -32,15 +32,6 @@ pipeline {
             }
         }
         stage('Build image') {
-            def mvnContainer = docker.image('jimschubert/8-jdk-alpine-mvn')
-            mvnContainer.inside('-v /m2repo:/m2repo') {
-                // Set up a shared Maven repo so we don't need to download all dependencies on every build.
-                writeFile file: 'settings.xml',
-                        text: '<settings><localRepository>/m2repo</localRepository></settings>'
-
-                // Build with maven settings.xml file that specs the local Maven repo.
-                sh 'mvn -B -s settings.xml package'
-            }
             steps {
                 echo 'Building image'
             }
