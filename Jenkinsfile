@@ -5,6 +5,15 @@ pipeline {
     tools {
         maven 'local-maven'
     }
+
+    triggers {
+        pollCSM(' * * * *')
+    }
+
+    parameters {
+        string(name: 'paramName1', defaultValue: "defaultValue1", description: 'param 1 descr')
+        string(name: 'paramName2', defaultValue: "defaultValue2", description: 'param 2 descr')
+    }
     stages {
         stage('Build') {
             steps {
@@ -19,7 +28,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo "Testing.. ${parameters.paramName1} and ${parameters.paramName2}"
             }
         }
         stage('Deploy') {
