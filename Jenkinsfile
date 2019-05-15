@@ -31,6 +31,22 @@ pipeline {
                 echo "Testing.. ${params.paramName1} and ${params.paramName2}"
             }
         }
+        stage('Build image') {
+            steps {
+                echo 'Building image'
+            }
+            //app = docker.build("[id-of-your-project-as-in-google-url]/[name-of-the-artifact]")
+        }
+        stage('Push image') {
+            steps {
+                echo 'Pushing image'
+            }
+//            docker.withRegistry('https://eu.gcr.io', 'gcr:[credentials-id]') {
+//                app.push("${env.BUILD_NUMBER}")
+//                app.push("latest")
+//            }
+
+        }
         stage('Deploy') {
             input {
                 message "Should we continue?"
