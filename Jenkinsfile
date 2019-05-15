@@ -7,8 +7,7 @@ pipeline {
     }
 
     triggers {
-        //every minute
-        pollCSM('* * * * *')
+        pollSCM('* * * * *')
     }
 
     parameters {
