@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing.. ${parameters.paramName1} and ${parameters.paramName2}"
+                echo "Testing.. ${params.paramName1} and ${params.paramName2}"
             }
         }
         stage('Deploy') {
